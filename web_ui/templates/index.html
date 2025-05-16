@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Canteen Food Recognition System</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <!-- Loading Indicator -->
+    <div class="loading" id="loadingIndicator">
+        <div class="spinner"></div>
+    </div>
+
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <div class="sidebar">
+            <div class="logo">
+                <i class="fas fa-utensils" style="font-size: 28px; color: var(--primary-color);"></i>
+                <h1>Canteen <span>Vision</span></h1>
+            </div>
+            <ul class="nav-list">
+                <li class="nav-item">
+                    <a href="#" class="nav-link active" data-view="scan">
+                        <i class="fas fa-camera"></i>
+                        <span>Scan Food</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-view="history">
+                        <i class="fas fa-history"></i>
+                        <span>Transaction History</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-view="calorie">
+                        <i class="fas fa-chart-pie"></i>
+                        <span>Calorie Information</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link" data-view="settings">
+                        <i class="fas fa-cog"></i>
+                        <span>Settings</span>
+                    </a>
+                </li>
+            </ul>
+            <div class="theme-toggle">
+                <input type="checkbox" id="themeToggle" class="theme-toggle-checkbox">
+                <label for="themeToggle" class="theme-toggle-label">Toggle dark mode</label>
+                <span class="theme-text">Dark Mode</span>
+            </div>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <div class="header">
+                <h2 id="pageTitle">Food Scanner</h2>
+                <div class="user-profile">
+                    <img src="{{ url_for('static', filename='img/user-avatar.jpg') }}" onerror="this.src='{{ url_for('static', filename='img/placeholder.jpg') }}'" alt="User Profile">
+                    <div class="user-info">
+                        <h4>SUPER SPARK 4o 🌟</h4>
+                        <p>Student ID: 3123102****</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scan Food View -->
+            <div class="content-area scan-view active-view">
+                <div class="left-section">
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Upload Food Tray Image</h3>
+                        </div>
+                        <div class="card-upload" id="uploadArea">
+                            <i class="fas fa-cloud-upload-alt"></i>
+                            <h4>Drag & Drop your image</h4>
+                            <p>or click to browse files (JPG, PNG format)</p>
+                            <div class="upload-buttons">
+                                <button class="upload-button">Select Image</button>
+                                <button class="camera-button" id="cameraBtn"><i class="fas fa-camera"></i> Use Camera</button>
+                            </div>
+                        </div>
+                        <!-- Camera Modal -->
+                        <div id="cameraModal" class="modal">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3>Take a Photo</h3>
+                                    <span class="close">&times;</span>
+                                </div>
+                                <div class="modal-body">
+                                    <video id="cameraFeed" autoplay></video>
+                                    <canvas id="cameraCanvas" style="display: none;"></canvas>
+                                    <div class="camera-controls">
+                                        <button id="captureBtn" class="btn-primary"><i class="fas fa-camera"></i> Capture</button>
+                                        <button id="retakeBtn" class="btn-primary" style="display: none;"><i class="fas fa-redo"></i> Retake</button>
+                                        <button id="usePhotoBtn" class="btn-primary" style="display: none;"><i class="fas fa-check"></i> Use Photo</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-image" id="imagePreview">
+                            <img src="" alt="Food Tray Preview">
+                            <div class="overlay">
+                                <div class="overlay-buttons">
+                                    <button class="overlay-button btn-primary" id="analyzeBtn">Analyze Food</button>
+                                    <button class="overlay-button btn-danger" id="removeImageBtn">Remove</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <h3>Detected Food Items</h3>
+                        </div>
+                        <div class="detected-items" id="detectedItems">
+                            <!-- Items will be dynamically added here after detection -->
+                        </div>
+                    </div>
+                </div>
+                <div class="right-section">
+                    <div class="card summary-section">
+                        <div class="card-header">
+                            <h3>Bill Summary</h3>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Items</span>
+                            <span class="summary-value">0</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Total Cost</span>
+                            <span class="summary-value">0 ₫</span>
+                        </div>
+                        <div class="summary-item">
+                            <span class="summary-label">Total Calories</span>
+                            <span class="summary-value">0 kcal</span>
+                        </div>
+                        <div class="calorie-meter">
+                            <div class="calorie-bar">
+                                <div class="calorie-progress"></div>
+                            </div>
+                            <div class="calorie-limit">
+                                <span>0 kcal</span>
+                                <span>Recommended: 600-800 kcal</span>
+                            </div>
+                        </div>
+                        <button class="checkout-btn">Complete Order</button>
+                    </div>
+                    <div class="card" id="notificationArea">
+                        <div class="card-header">
+                            <h3>Notification</h3>
+                        </div>
+                        <!-- Thêm đoạn này để khởi tạo phần notification-section từ đầu -->
+                        <div class="notification-section">
+                            <!-- Container mặc định cho thông tin dinh dưỡng -->
+                            <div class="info-card calorie-card info-primary">
+                                <i class="fas fa-utensils"></i>
+                                <div style="flex: 1;">
+                                    <h4 style="margin: 0 0 5px 0; font-size: 15px;">Calorie Information</h4>
+                                    <p>Upload a food tray image to see nutritional analysis</p>
+                                    <div class="calorie-details">
+                                        <span class="calorie-current"><i class="fas fa-fire"></i>0 kcal</span>
+                                        <span class="calorie-target">Target: 0-0 kcal</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transaction History View -->
+            <div class="content-area history-view">
+                <div class="card" style="width: 100%">
+                    <div class="card-header">
+                        <h3>Transaction History</h3>
+                    </div>
+                    <div class="transaction-filters">
+                        <button class="filter-button active">All</button>
+                        <button class="filter-button">Today</button>
+                        <button class="filter-button">This Week</button>
+                        <button class="filter-button">This Month</button>
+                    </div>
+                    <table class="transaction-table">
+                        <thead>
+                            <tr>
+                                <th>Date & Time</th>
+                                <th>Order ID</th>
+                                <th>Items</th>
+                                <th>Total</th>
+                                <th>Calories</th>
+                                <th>Status</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>14 May 2025, 12:30</td>
+                                <td>#ORD-2505</td>
+                                <td>4 items</td>
+                                <td>62,000 ₫</td>
+                                <td>575 kcal</td>
+                                <td><span class="transaction-status status-completed">Completed</span></td>
+                                <td><span class="view-details">Details</span></td>
+                            </tr>
+                            <tr>
+                                <td>13 May 2025, 13:15</td>
+                                <td>#ORD-2504</td>
+                                <td>3 items</td>
+                                <td>55,000 ₫</td>
+                                <td>520 kcal</td>
+                                <td><span class="transaction-status status-completed">Completed</span></td>
+                                <td><span class="view-details">Details</span></td>
+                            </tr>
+                            <!-- More history items would be added dynamically in a real application -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Settings View -->
+            <div class="content-area settings-view">
+                <div class="settings-grid">
+                    <div class="settings-card">
+                        <h4>Display Settings</h4>
+                        <div class="setting-item">
+                            <label class="setting-label">Language</label>
+                            <select class="setting-select" id="languageSelect">
+                                <option value="en">English</option>
+                                <option value="vi">Vietnamese</option>
+                            </select>
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Currency</label>
+                            <select class="setting-select" id="currencySelect">
+                                <option value="vnd">VND (Vietnamese Dong)</option>
+                                <option value="usd">USD (US Dollar)</option>
+                            </select>
+                        </div>
+                        <button class="save-settings" id="saveDisplaySettings">Save Changes</button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4>Calorie Settings</h4>
+                        <div class="setting-item">
+                            <label class="setting-label">Daily Calorie Goal</label>
+                            <input type="number" class="setting-input" value="2000" id="calorieGoalInput">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Meal Calorie Warning Threshold (%)</label>
+                            <input type="number" class="setting-input" value="30" id="calorieThresholdInput">
+                        </div>
+                        <button class="save-settings" id="saveCalorieSettings">Save Changes</button>
+                    </div>
+
+                    <div class="settings-card">
+                        <h4>Account Settings</h4>
+                        <div class="setting-item">
+                            <label class="setting-label">Full Name</label>
+                            <input type="text" class="setting-input" value="SUPER SPARK 4o 🌟" id="fullNameInput">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Email</label>
+                            <input type="email" class="setting-input" value="SUPER SPARK 4o 🌟@gmail.com" id="emailInput">
+                        </div>
+                        <div class="setting-item">
+                            <label class="setting-label">Student ID</label>
+                            <input type="text" class="setting-input" value="3123102****" id="studentIdInput">
+                        </div>
+                        <button class="save-settings" id="saveAccountSettings">Save Changes</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Calorie Information View -->
+            <div class="content-area calorie-view">
+                <div class="card" style="width: 100%">
+                    <div class="card-header">
+                        <h3>Food Calorie Information</h3>
+                    </div>
+                    <div class="calorie-search">
+                        <input type="text" placeholder="Search for food...">
+                        <button><i class="fas fa-search"></i></button>
+                    </div>
+                    <div class="calorie-grid">
+                        <!-- Food items will be added dynamically from the database -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
