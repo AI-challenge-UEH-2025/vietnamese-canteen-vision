@@ -32,8 +32,8 @@ Built for the AI Challenge 3ITECH 2025, this project demonstrates how AI can str
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/calo-info.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/manually-added.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/history.jpg" width="400px">
-  <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/history.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/menu-info.jpg" width="400px">
+  <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/setting.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/dark-mode.jpg" width="400px">
 </div>
 
@@ -82,8 +82,8 @@ The system can recognize 41 different Vietnamese food items including:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/CanteenVision.git
-   cd CanteenVision
+   git clone https://github.com/AI-challenge-UEH-2025/vietnamese-canteen-vision.git
+   cd vietnamese-canteen-vision
    ```
 
 2. Install the required packages:
@@ -91,23 +91,12 @@ The system can recognize 41 different Vietnamese food items including:
    pip install -r requirements.txt
    ```
 
-3. Download the pre-trained models:
-   ```bash
-   # Create models directory if it doesn't exist
-   mkdir -p models
-   
-   # Download the models from the release page or your storage location
-   # For example:
-   # wget -O models/best.pt https://example.com/models/best.pt
-   # wget -O models/resnet50v2_finetuned.h5 https://example.com/models/resnet50v2_finetuned.h5
-   ```
-
-4. Start the web server:
+3. Start the web server:
    ```bash
    python web_server.py
    ```
 
-5. Access the interface at http://localhost:5000
+4. Access the interface at http://localhost:5000
 
 ### Docker Installation (Alternative)
 
@@ -163,36 +152,35 @@ The classification model was fine-tuned using transfer learning:
 ```
 vietnamese-canteen-vision/
 │
-├── data/                      # Dataset directory
+├── data/                        # Dataset directory
 │
-├── models/                    # AI model files
-│   ├── cnn/                   # CNN model directory
-│   │   ├── best.pt            # YOLO best model
-│   │   ├── cnn.h5             # CNN model
-│   │   ├── resnet50v2_finetuned.h5 # Fine-tuned ResNet model
-│   │   └── resnet50v2_initial.h5 # Initial ResNet model
+├── models/                      # AI model files
+│   ├── cnn/                     # CNN model directory
+│   ├── best.pt                  # YOLO best model
+│   ├── cnn.h5                   # CNN model
+│   ├── resnet50v2_finetuned.h5  # Fine-tuned ResNet model
+│   └── resnet50v2_initial.h5    # Initial ResNet model
 │
-├── src/                       # Python source code
-│   ├── __pycache__/           # Python cache
-│   ├── augmentation.py        # Data augmentation utilities
-│   ├── billing.py             # Billing logic
-│   ├── classify.py            # Food classification
-│   ├── detect.py              # Food detection
-│   ├── gui.py                 # GUI application
-│   ├── train_resnet.py        # ResNet training script
-│   └── train_yolo.py          # YOLO training script
+├── src/                         # Python source code
+│   ├── __pycache__/             # Python cache
+│   ├── augmentation.py          # Data augmentation utilities
+│   ├── billing.py               # Billing logic
+│   ├── classify.py              # Food classification
+│   ├── detect.py                # Food detection
+│   ├── gui.py                   # GUI application
+│   ├── train_resnet.py          # ResNet training script
+│   └── train_yolo.py            # YOLO training script
 │
-├── web_ui/                    # Web interface
-│   ├── __pycache__/           # Python cache
-│   ├── static/                # CSS, JS, images
-│   ├── templates/             # HTML templates
-│   └── .gitignore             # Git ignore file
+├── web_ui/                      # Web interface
+│   ├── static/                  # CSS, JS, images
+│   ├── templates/               # HTML templates
+│   └── .gitignore               # Git ignore file
 │
-├── app.py                     # Flask application
-├── main.py                    # Main entry point
-├── requirements.txt           # Dependencies
-├── web_server.py              # Server startup script
-└── README.md                  # This file
+├── app.py                       # Flask application
+├── main.py                      # Main entry point
+├── requirements.txt             # Dependencies
+├── web_server.py                # Server startup script
+└── README.md                    # This file
 ```
 
 ## 📈 Future Improvements
