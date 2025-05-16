@@ -6,7 +6,14 @@ __pycache__/
 # Distribution / packaging
 dist/
 build/
+data_minimal/
 *.egg-info/
+*.spec
+run_canteenvision.py
+*.exe
+Khởi động CanteenVision*
+CanteenVision_Setup*
+installer.nsi
 
 # Virtual environments
 venv/
@@ -25,7 +32,6 @@ ENV/
 # Dataset ignores - excluding image and label files
 data/an com.v11-train-lan-3.yolov8/
 
-
 # Keep yaml and other configuration files
 !data/an com.v11-train-lan-3.yolov8/data.yaml
 
@@ -34,9 +40,19 @@ data/cropped_items/
 temp/
 *.tmp
 
+# PyInstaller related files
+*.manifest
+*.spec
+build_exe.py
+run_canteenvision.py
+
 # OS specific files
 .DS_Store
 Thumbs.db
 
 # Log files
 *.log
+
+# Windows specific
+*.pyd
+*.dll
