@@ -32,8 +32,8 @@ Built for the AI Challenge 3ITECH 2025, this project demonstrates how AI can str
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/calo-info.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/manually-added.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/history.jpg" width="400px">
-  <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/history.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/menu-info.jpg" width="400px">
+  <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/setting.jpg" width="400px">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/dark-mode.jpg" width="400px">
 </div>
 
