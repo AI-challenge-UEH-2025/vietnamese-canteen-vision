@@ -3,12 +3,12 @@
   <a href="https://youtu.be/w-ruyauu5rc?si=OVgKPpun4WrvD4pU" target="_blank">
     <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/banner.jpg" alt="Vietnamese Canteen Vision Banner" width="800"/>
   </a>
-  
-  <br/> <br/> <a href="https://www.python.org/downloads/" target="_blank"><img alt="Python 3.8+" src="https://img.shields.io/badge/python-3.8+-blue.svg"/></a>
+    <br/> <br/> <a href="https://www.python.org/downloads/" target="_blank"><img alt="Python 3.8+" src="https://img.shields.io/badge/python-3.8+-blue.svg"/></a>
   <a href="https://www.tensorflow.org/" target="_blank"><img alt="TensorFlow" src="https://img.shields.io/badge/TensorFlow-2.9+-orange.svg"/></a>
   <a href="https://github.com/ultralytics/ultralytics" target="_blank"><img alt="YOLOv8" src="https://img.shields.io/badge/YOLO-v8-darkgreen.svg"/></a>
   <a href="https://opensource.org/licenses/MIT" target="_blank"><img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg"/></a>
 </p>
+
 ## 📋 Overview
 
 CanteenVision is an intelligent system that automates billing for canteen food trays. Using computer vision and deep learning, the system detects and classifies Vietnamese food items on a tray, calculates the total cost, and provides nutritional information - all in real-time.
