@@ -1,6 +1,6 @@
 # Vietnamese Canteen Vision: AI-Powered Food Recognition System
-<a href="https://youtu.be/w-ruyauu5rc?si=OVgKPpun4WrvD4pU" target="_blank">
-    <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/banner.jpg" alt="Tiêu đề video" width="560" height="315" />
+<a href="https://youtu.be/w-ruyauu5rc?si=OVgKPpun4WrvD4pU" target="_blank" align="center">
+    <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/banner.jpg" alt="Vietnamese Canteen Vision Banner" width="800"/>
 </a>
 <div align="center">
   <img src="https://raw.githubusercontent.com/AI-challenge-UEH-2025/vietnamese-canteen-vision/main/web_ui/static/img/banner.jpg" alt="Vietnamese Canteen Vision Banner" width="800px">
