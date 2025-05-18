@@ -1,3 +1,18 @@
+import os
+import sys
+
+# Xác định đường dẫn gốc khi chạy từ file EXE
+if getattr(sys, 'frozen', False):
+    # Nếu đang chạy từ EXE (đã đóng gói)
+    application_path = os.path.dirname(sys.executable)
+else:
+    # Nếu đang chạy từ script Python
+    application_path = os.path.dirname(os.path.abspath(__file__))
+
+# Điều chỉnh các đường dẫn khi khởi tạo Flask app
+static_folder = os.path.join(application_path, 'web_ui', 'static')
+template_folder = os.path.join(application_path, 'web_ui', 'templates')
+
 from flask import Flask, render_template, request, jsonify
 import os
 import base64
@@ -13,8 +28,8 @@ from src.classify import FoodClassifier
 from src.billing import BillingSystem
 
 app = Flask(__name__, 
-            static_folder='web_ui/static',
-            template_folder='web_ui/templates')
+            static_folder=static_folder,
+            template_folder=template_folder)
             
 # Increase max content length to 50MB
 app.config['MAX_CONTENT_LENGTH'] = 50 * 1024 * 1024

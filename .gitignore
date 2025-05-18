@@ -14,6 +14,10 @@ run_canteenvision.py
 Khởi động CanteenVision*
 CanteenVision_Setup*
 installer.nsi
+hook-tensorflow.py
+hook-torch.py
+hook-ultralytics.py
+my_hook.py
 
 # Virtual environments
 venv/
