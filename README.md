@@ -82,7 +82,7 @@ The system can recognize 41 different Vietnamese food items including:
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/AI-challenge-UEH-2025/vietnamese-canteen-vision.git
+   git clone https://github.com/SPARK-UNI/vietnamese-canteen-vision.git
    cd vietnamese-canteen-vision
    ```
 
